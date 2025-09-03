@@ -1,0 +1,614 @@
+import React, { useState } from 'react';
+import { ChevronLeft, ChevronRight, Calendar, Clock, BookOpen, CheckCircle, XCircle } from 'lucide-react';
+
+const CulturalTouchstones = () => {
+  const [currentIndex, setCurrentIndex] = useState(1);
+  const [showQuiz, setShowQuiz] = useState(false);
+  const [quizAnswers, setQuizAnswers] = useState({});
+  const [quizSubmitted, setQuizSubmitted] = useState(false);
+
+  const getCurrentTouchstoneNumber = () => {
+    return 2; // Today is touchstone #2
+  };
+  
+  const currentTouchstoneNumber = getCurrentTouchstoneNumber();
+
+  const topics = [
+    {
+      id: 1,
+      title: "The Plaza Accord of 1985: How Five Nations Rewrote Global Economics",
+      category: "Historical Events",
+      readTime: "4 min read",
+      date: "#1",
+      summary: "A single meeting at New York's Plaza Hotel triggered Japan's economic bubble and reshaped international finance forever.",
+      content: `On September 22, 1985, finance ministers from the United States, Japan, West Germany, France, and the United Kingdom gathered at New York's Plaza Hotel for what would become one of the most consequential economic agreements in modern history. The Plaza Accord deliberately weakened the U.S. dollar and set in motion events that would reshape global economics for decades.
+
+**The Problem: America's Trade Deficit Crisis**
+
+By 1985, the United States faced a massive trade deficit, particularly with Japan. American manufacturers couldn't compete with Japanese goods priced in artificially cheap yen due to the strong dollar. U.S. unemployment was rising, and Congress threatened protectionist legislation that could have triggered a global trade war.
+
+**The Secret Negotiations**
+
+The accord was negotiated in secret to prevent currency speculation. Treasury Secretary James Baker led the American delegation with a clear goal: coordinate international intervention to bring down the dollar's value. The agreement was remarkably simple - the five nations would work together to depreciate the dollar against other major currencies, particularly the Japanese yen and German deutschmark.
+
+**Immediate Impact: Currency Chaos**
+
+The effect was immediate and dramatic. Within two years, the dollar fell by over 50% against the yen and deutschmark. American exports became competitive again, and the trade deficit began to shrink. However, the cure created new diseases. Japan, to prevent its economy from collapsing due to the strong yen, lowered interest rates dramatically.
+
+**The Japanese Bubble Economy**
+
+Low interest rates meant Japanese investors had access to nearly free money. Real estate prices in Tokyo became absurd - at the bubble's peak, the grounds of the Imperial Palace were theoretically worth more than all the real estate in California. The Nikkei stock index rose 600% between 1985 and 1989.
+
+**Modern Relevance**
+
+Today's currency disputes - from China's yuan policy to concerns about digital currencies - echo Plaza Accord dynamics. The agreement showed that currency values aren't just market phenomena but political tools that can reshape global power balances.`,
+      quiz: {
+        questions: [
+          {
+            id: 1,
+            question: "What was the primary goal of the Plaza Accord?",
+            options: [
+              "Coordinate international intervention to weaken the U.S. dollar",
+              "Establish fixed exchange rates between major currencies",
+              "Create a new international banking system",
+              "Strengthen the U.S. dollar against all currencies"
+            ],
+            correct: 0,
+            explanation: "The Plaza Accord was specifically designed to coordinate intervention by five major economies to depreciate the U.S. dollar."
+          },
+          {
+            id: 2,
+            question: "Which unintended consequence did the Plaza Accord help trigger in Japan?",
+            options: [
+              "Japan's withdrawal from international trade",
+              "The rise of Japan's manufacturing sector", 
+              "A recession that lasted only six months",
+              "A massive asset bubble in real estate and stocks"
+            ],
+            correct: 3,
+            explanation: "To combat the strong yen, Japan lowered interest rates dramatically, creating cheap money that fueled massive speculation."
+          },
+          {
+            id: 3,
+            question: "Why is the Plaza Accord still relevant to understanding modern economics?",
+            options: [
+              "It proved currency values can never be controlled",
+              "It established coordinated currency intervention templates",
+              "It created the Euro currency system",
+              "It ended all international trade disputes"
+            ],
+            correct: 1,
+            explanation: "The Plaza Accord established the precedent for coordinated international currency intervention that continues today."
+          }
+        ]
+      },
+      tags: ["Economics", "Japan", "Currency", "International Relations", "1980s"]
+    },
+    {
+      id: 2,
+      title: "The Harlem Renaissance: When Black Culture Transformed America",
+      category: "Arts & Culture",
+      readTime: "5 min read",
+      date: "#2",
+      summary: "How a neighborhood in Manhattan became the epicenter of African American cultural revolution that influenced art, music, and literature worldwide.",
+      content: `Between 1918 and 1937, the Harlem neighborhood of Manhattan became the unlikely epicenter of a cultural explosion that would redefine American art, literature, and identity. The Harlem Renaissance wasn't just an artistic movement - it was a declaration that Black culture was central to American culture, not separate from it.
+
+**The Great Migration Sets the Stage**
+
+The Renaissance emerged from massive demographic change. Between 1910 and 1930, over one million African Americans moved from the rural South to northern cities, seeking economic opportunities and escaping Jim Crow segregation. Harlem, with its beautiful brownstones and relatively affordable rents, became a magnet for this migration.
+
+**Literary Revolution**
+
+The literary achievements of the Harlem Renaissance changed American letters forever. Langston Hughes pioneered a distinctly Black poetic voice, incorporating jazz rhythms and vernacular speech into sophisticated verse. Zora Neale Hurston challenged both white and Black expectations with "Their Eyes Were Watching God," creating complex Black female characters who defied stereotypes.
+
+**Jazz: The Sound of Modern America**
+
+Harlem's music venues, particularly the Cotton Club and Savoy Ballroom, became laboratories for musical innovation. Duke Ellington transformed jazz from dance music into sophisticated composition. His orchestra's residency at the Cotton Club was broadcast nationwide, making jazz America's first truly national music.
+
+**Legacy and Influence**
+
+The Harlem Renaissance ended with the Great Depression, but its influence proved lasting. More importantly, the Renaissance established the template for how marginalized communities could use cultural expression to demand recognition and respect. The Civil Rights Movement, Chicano Renaissance, and contemporary movements all drew inspiration from Harlem's example.`,
+      quiz: {
+        questions: [
+          {
+            id: 1,
+            question: "What made the Harlem Renaissance unique as a cultural movement?",
+            options: [
+              "It was funded entirely by the government",
+              "It concentrated Black talent in one accessible neighborhood",
+              "It only focused on music and ignored other arts",
+              "It was the first time African Americans created art"
+            ],
+            correct: 1,
+            explanation: "The concentration of educated, ambitious African Americans in Harlem created a critical mass of talent and audience."
+          },
+          {
+            id: 2,
+            question: "How did the Harlem Renaissance change American literature?",
+            options: [
+              "It focused only on protest literature about discrimination",
+              "It copied European literary styles without innovation",
+              "It created separate 'Black literature' distinct from American literature", 
+              "It proved African American experiences were universal human themes"
+            ],
+            correct: 3,
+            explanation: "Writers created American literature that happened to be written by Black authors, proving African American experiences were universal."
+          },
+          {
+            id: 3,
+            question: "What is the lasting legacy of the Harlem Renaissance?",
+            options: [
+              "It established how marginalized communities use culture for recognition",
+              "It ended racism in America permanently",
+              "It only influenced other African American artists",
+              "It created a separate Black cultural sphere"
+            ],
+            correct: 0,
+            explanation: "The Renaissance established the template for how marginalized communities could use cultural expression to demand recognition."
+          }
+        ]
+      },
+      tags: ["African American History", "Literature", "Jazz", "New York", "Cultural Movements"]
+    },
+    {
+      id: 3,
+      title: "The Carrington Event of 1859: When the Sun Nearly Broke Civilization",
+      category: "Historical Events",
+      readTime: "4 min read",
+      date: "#3",
+      summary: "The most powerful geomagnetic storm in recorded history created aurora as far south as the Caribbean and showed how vulnerable our technology really is.",
+      content: `On September 1, 1859, British astronomer Richard Carrington was observing sunspots through his telescope when he witnessed something unprecedented: brilliant white light flashing from the sun's surface. Within hours, this solar outburst would trigger the most powerful geomagnetic storm in recorded history, offering a terrifying preview of what could happen to our technology-dependent civilization.
+
+**The Perfect Solar Storm**
+
+What Carrington observed was a massive coronal mass ejection (CME) - billions of tons of charged particles blasted from the sun's surface at incredible speed. This particular eruption was extraordinary in both size and direction, aimed directly at Earth like a cosmic shotgun blast.
+
+**Telegraph Networks Under Siege**
+
+The telegraph system, humanity's first global communication network, bore the brunt of the storm's impact. Telegraph lines across North America and Europe sparked and caught fire. Telegraph operators received electric shocks, and some telegraph paper burst into flames.
+
+Most remarkably, some telegraph systems continued working even after their power sources were disconnected - the geomagnetic storm itself was providing enough electrical current to send messages.
+
+**Aurora Around the World**
+
+The storm created aurora displays visible as far south as the Caribbean, Rome, and Hawaii - places where aurora had never been recorded. In the Rocky Mountains, the aurora was so bright that gold miners woke up thinking it was dawn and began preparing breakfast.
+
+**Scientific Revolution**
+
+The Carrington Event revolutionized understanding of the sun-Earth connection. Before 1859, most scientists believed space was empty and that solar activity couldn't affect Earth. Carrington's observations, combined with the global technological disruption, proved that the sun and Earth were intimately connected through invisible forces.
+
+**Modern Implications**
+
+Space weather scientists now monitor solar activity constantly, watching for signs of major eruptions. A Carrington-level event today would likely cause trillions of dollars in damage and could disrupt civilization for months or years.`,
+      quiz: {
+        questions: [
+          {
+            id: 1,
+            question: "What made the Carrington Event so significant for understanding space weather?",
+            options: [
+              "It was the first solar storm ever recorded",
+              "It created permanent damage to Earth's magnetic field",
+              "It was visible only to professional astronomers",
+              "It proved solar activity could affect technology on Earth"
+            ],
+            correct: 3,
+            explanation: "Before 1859, most scientists believed space was empty and solar activity couldn't affect Earth. The Carrington Event proved that the sun and Earth were connected through invisible forces that could disrupt human technology."
+          },
+          {
+            id: 2,
+            question: "How did the Carrington Event affect telegraph systems?",
+            options: [
+              "Telegraph lines sparked and caught fire, but some operated using aurora-induced current",
+              "All telegraph systems stopped working permanently",
+              "Only European telegraph systems were affected",
+              "Telegraph systems became more powerful and efficient"
+            ],
+            correct: 0,
+            explanation: "Telegraph lines sparked and caught fire across North America and Europe, but remarkably, some systems could operate using only the electrical current induced by the geomagnetic storm itself."
+          },
+          {
+            id: 3,
+            question: "Why should we be concerned about Carrington-level events today?",
+            options: [
+              "They happen every few years and are predictable",
+              "Solar storms no longer affect Earth due to climate change",
+              "Modern technology is completely protected from space weather",
+              "Our technological dependence has grown exponentially since 1859"
+            ],
+            correct: 3,
+            explanation: "A Carrington-level event today would likely cause trillions in damage to our satellite-dependent, electronic infrastructure. Our technological dependence has grown exponentially while our vulnerability to space weather remains high."
+          }
+        ]
+      },
+      tags: ["Solar Storms", "Technology", "Astronomy", "Natural Disasters", "Scientific Discovery"]
+    },
+    {
+      id: 4,
+      title: "The Invention of Blue Jeans: How Work Pants Became a Global Symbol",
+      category: "Everyday Objects",
+      readTime: "4 min read",
+      date: "#4",
+      summary: "From California gold miners to haute couture runways, the surprising journey of denim from practical workwear to universal fashion statement.",
+      content: `In 1873, a Nevada tailor named Jacob Davis wrote an urgent letter to dry goods merchant Levi Strauss in San Francisco. Davis had been using metal rivets to reinforce the stress points on work pants, but he needed a business partner to help him patent the innovation. That partnership would create one of the most enduring and globally recognized garments in human history: blue jeans.
+
+**The Problem: Pants That Actually Lasted**
+
+During the California Gold Rush, miners faced a persistent problem: their pants kept falling apart. The combination of heavy labor, rough terrain, and constant use meant that traditional work pants would tear at the pockets and seams within weeks. Jacob Davis, a tailor in Reno, Nevada, had been experimenting with metal rivets borrowed from horse blankets to reinforce the stress points on pants.
+
+The innovation was simple but revolutionary. By placing metal rivets at the corners of pockets and other high-stress areas, Davis created pants that could withstand the brutal demands of manual labor. Word spread quickly among workers, and demand for his reinforced pants exploded.
+
+**The Partnership That Changed Fashion**
+
+Unable to afford the patent fees on his own, Davis approached Levi Strauss, who had been supplying him with denim fabric. Strauss immediately recognized the commercial potential and agreed to partner with Davis. On May 20, 1873, they received U.S. Patent No. 139,121 for "Improvement in Fastening Pocket-Openings" - the birth date of blue jeans.
+
+The choice of indigo-dyed denim wasn't accidental. Indigo was one of the few dyes that could create a deep, lasting color, and the fabric was sturdy enough for heavy work. The distinctive blue color also had practical advantages: it didn't show dirt as readily as lighter colors, and the gradual fading created a unique, personalized appearance over time.
+
+**From Workwear to Rebellion**
+
+For decades, jeans remained strictly utilitarian clothing worn by miners, railroad workers, cowboys, and other laborers. This began to change in the 1930s when Hollywood westerns romanticized cowboy culture, making jeans symbols of rugged American individualism. Stars like John Wayne brought denim to movie screens across the country.
+
+The real transformation came in the 1950s when teenagers began adopting jeans as everyday wear. Movies like "Rebel Without a Cause" (1955) featuring James Dean in jeans and a white t-shirt established denim as the uniform of youthful rebellion. Many schools banned jeans, which only increased their appeal among young people seeking to express independence from adult authority.
+
+**Global Cultural Export**
+
+As American popular culture spread worldwide after World War II, jeans became one of America's most successful cultural exports. In Soviet-era Eastern Europe, jeans were so coveted that they sold on black markets for months' worth of wages. Wearing American jeans became a form of quiet political rebellion against communist ideology.
+
+The 1960s counterculture movement further cemented jeans' association with anti-establishment values. From civil rights protesters to anti-war demonstrators, jeans became the uniform of social change. The fabric literally wore the history of social movements - patches, embroidery, and deliberate tears told stories of personal and political identity.
+
+**The Designer Revolution**
+
+The 1970s and 1980s transformed jeans from counter-culture symbol to high fashion statement. Designers like Calvin Klein and Gloria Vanderbilt created premium denim lines, proving that jeans could be both casual and luxurious. The introduction of designer jeans marked the beginning of denim's journey from workwear to fashion staple.
+
+This period also saw the rise of denim diversity. Different cuts, washes, and treatments created numerous subcategories: skinny jeans, bootcut, acid wash, stonewashed, and countless others. Each style carried its own cultural associations and tribal affiliations.
+
+**Modern Denim Culture**
+
+Today, jeans represent perhaps the most democratic garment ever created. They're worn by billionaires and minimum-wage workers, by people in rural villages and urban centers, across virtually every culture and economic class. The global denim market is worth over $90 billion annually, with the average American owning seven pairs of jeans.
+
+Raw denim culture has created communities of enthusiasts who prize authenticity and craftsmanship, seeking jeans made with traditional methods and natural indigo. Meanwhile, sustainable fashion movements are reimagining denim production to address environmental concerns about water usage and chemical processing.
+
+**Cultural Impact Beyond Fashion**
+
+Jeans have become more than clothing - they're a canvas for self-expression, a symbol of democracy and egalitarianism, and a marker of cultural identity. The phrase "casual Friday" exists largely because of jeans' transformation from forbidden workwear to acceptable business attire.
+
+The story of blue jeans embodies the American Dream: a simple innovation born from practical necessity that grew into a global phenomenon. They represent the democratization of fashion, the power of youth culture, and the enduring appeal of authenticity in an increasingly artificial world.
+
+From Jacob Davis's riveted work pants to today's $300 designer denim, jeans have maintained their essential character while adapting to each generation's needs and values. They remain one of humanity's most successful attempts to create clothing that is simultaneously functional, fashionable, and meaningful.`,
+      quiz: {
+        questions: [
+          {
+            id: 1,
+            question: "What practical problem led to the invention of blue jeans?",
+            options: [
+              "Workers needed pants that were more fashionable",
+              "Traditional work pants kept tearing at stress points",
+              "There was a shortage of cotton fabric",
+              "Miners wanted pants that were cooler in hot weather"
+            ],
+            correct: 1,
+            explanation: "Jacob Davis used metal rivets to reinforce stress points because miners' and workers' pants kept falling apart from heavy labor and rough use."
+          },
+          {
+            id: 2,
+            question: "How did jeans transition from workwear to mainstream fashion?",
+            options: [
+              "Department stores began marketing them to families",
+              "Hollywood westerns and rebellious youth culture in the 1950s",
+              "The government promoted them as patriotic clothing",
+              "Fashion designers immediately recognized their potential"
+            ],
+            correct: 1,
+            explanation: "Hollywood westerns romanticized cowboy culture, and movies like 'Rebel Without a Cause' with James Dean established jeans as symbols of youthful rebellion, leading to mainstream adoption."
+          },
+          {
+            id: 3,
+            question: "What makes jeans a significant cultural phenomenon beyond just clothing?",
+            options: [
+              "They represent democracy and self-expression across all social classes",
+              "They are the most expensive type of pants ever made",
+              "They can only be worn by certain social groups",
+              "They require special care and maintenance"
+            ],
+            correct: 0,
+            explanation: "Jeans became a democratic garment worn across all economic classes and cultures, serving as a canvas for self-expression and a symbol of egalitarianism and authenticity."
+          }
+        ]
+      },
+      tags: ["Fashion", "American Culture", "Innovation", "Social History", "Global Impact"]
+    }
+  ];
+
+  const currentTopic = topics[currentIndex];
+
+  const nextTopic = () => {
+    setCurrentIndex((prev) => (prev + 1) % topics.length);
+    setShowQuiz(false);
+    setQuizAnswers({});
+    setQuizSubmitted(false);
+  };
+
+  const prevTopic = () => {
+    setCurrentIndex((prev) => (prev - 1 + topics.length) % topics.length);
+    setShowQuiz(false);
+    setQuizAnswers({});
+    setQuizSubmitted(false);
+  };
+
+  const handleQuizAnswer = (questionId, answerIndex) => {
+    setQuizAnswers(prev => ({
+      ...prev,
+      [questionId]: answerIndex
+    }));
+  };
+
+  const submitQuiz = () => {
+    setQuizSubmitted(true);
+  };
+
+  const getQuizScore = () => {
+    if (!currentTopic.quiz) return 0;
+    let correct = 0;
+    currentTopic.quiz.questions.forEach(q => {
+      if (quizAnswers[q.id] === q.correct) correct++;
+    });
+    return correct;
+  };
+
+  const formatContent = (content) => {
+    return content.split('\n\n').map((paragraph, index) => {
+      if (paragraph.startsWith('**') && paragraph.endsWith('**')) {
+        return (
+          <h3 key={index} className="text-xl font-bold text-gray-800 mt-6 mb-3">
+            {paragraph.slice(2, -2)}
+          </h3>
+        );
+      }
+      return (
+        <p key={index} className="text-gray-700 leading-relaxed mb-4">
+          {paragraph.split('**').map((part, i) => 
+            i % 2 === 1 ? <strong key={i}>{part}</strong> : part
+          )}
+        </p>
+      );
+    });
+  };
+
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-indigo-50 to-purple-100 p-4 pt-12">
+      <div className="max-w-4xl mx-auto">
+        {/* Header */}
+        <div className="text-center mb-8">
+          <h1 className="text-4xl font-bold text-gray-800 mb-2">Cultural Touchstones</h1>
+          <p className="text-lg text-gray-600 mb-4">Enrich your global knowledge and have better conversations</p>
+        </div>
+
+        {/* Archive Navigation */}
+        <div className="flex justify-center items-center mb-6">
+          {currentIndex + 1 > 1 ? (
+            <div className="flex items-center space-x-4">
+              <button 
+                onClick={prevTopic}
+                className="flex items-center space-x-2 px-3 py-1 text-sm text-gray-500 hover:text-gray-700 transition-colors"
+              >
+                <ChevronLeft className="w-3 h-3" />
+                <span>Previous Touchstone</span>
+              </button>
+              {currentIndex + 1 < currentTouchstoneNumber ? (
+                <button 
+                  onClick={nextTopic}
+                  className="flex items-center space-x-2 px-3 py-1 text-sm text-blue-600 hover:text-blue-800 transition-colors"
+                >
+                  <span>Next Touchstone</span>
+                  <ChevronRight className="w-3 h-3" />
+                </button>
+              ) : (
+                <span className="text-sm text-green-600 font-medium">You're all caught up!</span>
+              )}
+            </div>
+          ) : (
+            <div className="flex items-center space-x-4">
+              <span className="text-sm text-gray-500">You're at the beginning!</span>
+              <button 
+                onClick={nextTopic}
+                className="flex items-center space-x-2 px-3 py-1 text-sm text-blue-600 hover:text-blue-800 transition-colors"
+              >
+                <span>Next Touchstone</span>
+                <ChevronRight className="w-3 h-3" />
+              </button>
+            </div>
+          )}
+        </div>
+
+        {/* Topic Metadata */}
+        <div className="flex justify-center items-center space-x-4 mb-6 text-sm">
+          <div className="flex items-center space-x-1">
+            <Calendar className="w-4 h-4 text-gray-500" />
+            <span className="text-gray-600">{currentTopic.date}</span>
+          </div>
+          <div className="flex items-center space-x-1">
+            <Clock className="w-4 h-4 text-gray-500" />
+            <span className="text-gray-600">{currentTopic.readTime}</span>
+          </div>
+        </div>
+
+        {/* Main Article Card */}
+        <div className="bg-white rounded-xl shadow-lg overflow-hidden">
+          {/* Article Header */}
+          <div className="bg-gradient-to-r from-indigo-600 to-purple-600 text-white p-6">
+            <div className="flex items-center justify-between mb-4">
+              <span className="bg-white/20 px-3 py-1 rounded-full text-sm font-medium">
+                {currentTopic.category}
+              </span>
+            </div>
+            <h2 className="text-3xl font-bold mb-3">{currentTopic.title}</h2>
+            <p className="text-lg text-purple-100">{currentTopic.summary}</p>
+          </div>
+
+          {/* Article Content */}
+          <div className="p-6">
+            {!showQuiz ? (
+              <>
+                <div className="prose prose-lg max-w-none">
+                  {formatContent(currentTopic.content)}
+                </div>
+                
+                {/* Quiz Button */}
+                {currentTopic.quiz && (
+                  <div className="mt-8 text-center">
+                    <button
+                      onClick={() => {
+                        setShowQuiz(true);
+                        setTimeout(() => {
+                          document.querySelector('.quiz-section')?.scrollIntoView({ 
+                            behavior: 'smooth',
+                            block: 'start'
+                          });
+                        }, 100);
+                      }}
+                      className="bg-indigo-600 text-white px-6 py-3 rounded-lg hover:bg-indigo-700 transition-colors font-medium"
+                    >
+                      Think you've got it?
+                    </button>
+                  </div>
+                )}
+                
+                {/* Admin Button */}
+                <div className="mt-6 pt-4 border-t border-gray-200 text-center">
+                  <button className="text-xs text-gray-400 hover:text-gray-600 transition-colors">
+                    + Generate New Topics (Admin)
+                  </button>
+                </div>
+              </>
+            ) : (
+              <div className="max-w-3xl quiz-section">
+                <div className="text-center mb-8">
+                  <h3 className="text-2xl font-bold text-gray-800 mb-2">Test Your Knowledge</h3>
+                  <p className="text-gray-600">Answer these questions to reinforce the key concepts</p>
+                </div>
+
+                {currentTopic.quiz.questions.map((question, qIndex) => (
+                  <div key={question.id} className="mb-8 p-6 bg-gray-50 rounded-lg">
+                    <h4 className="text-lg font-semibold text-gray-800 mb-4">
+                      Question {qIndex + 1}: {question.question}
+                    </h4>
+                    
+                    <div className="space-y-3">
+                      {question.options.map((option, oIndex) => {
+                        const isSelected = quizAnswers[question.id] === oIndex;
+                        const isCorrect = oIndex === question.correct;
+                        const showResult = quizSubmitted;
+                        
+                        let buttonClass = "w-full text-left p-3 rounded-lg border transition-colors ";
+                        if (showResult) {
+                          if (isCorrect) {
+                            buttonClass += "bg-green-100 border-green-500 text-green-800";
+                          } else if (isSelected && !isCorrect) {
+                            buttonClass += "bg-red-100 border-red-500 text-red-800";
+                          } else {
+                            buttonClass += "bg-gray-100 border-gray-300 text-gray-600";
+                          }
+                        } else {
+                          buttonClass += isSelected 
+                            ? "bg-indigo-100 border-indigo-500 text-indigo-800" 
+                            : "bg-white border-gray-300 hover:border-indigo-400";
+                        }
+
+                        return (
+                          <button
+                            key={oIndex}
+                            onClick={() => !quizSubmitted && handleQuizAnswer(question.id, oIndex)}
+                            disabled={quizSubmitted}
+                            className={buttonClass}
+                          >
+                            <div className="flex items-center justify-between">
+                              <span>{option}</span>
+                              {showResult && (
+                                <span>
+                                  {isCorrect && <CheckCircle className="w-5 h-5 text-green-600" />}
+                                  {isSelected && !isCorrect && <XCircle className="w-5 h-5 text-red-600" />}
+                                </span>
+                              )}
+                            </div>
+                          </button>
+                        );
+                      })}
+                    </div>
+
+                    {quizSubmitted && (
+                      <div className="mt-4 p-4 bg-blue-50 rounded-lg">
+                        <p className="text-sm text-blue-800">
+                          <strong>Explanation:</strong> {question.explanation}
+                        </p>
+                      </div>
+                    )}
+                  </div>
+                ))}
+
+                <div className="flex justify-between items-center mt-8">
+                  <button
+                    onClick={() => setShowQuiz(false)}
+                    className="px-4 py-2 text-gray-600 hover:text-gray-800 transition-colors"
+                  >
+                    ← Back to Article
+                  </button>
+
+                  {!quizSubmitted ? (
+                    <button
+                      onClick={submitQuiz}
+                      disabled={Object.keys(quizAnswers).length < currentTopic.quiz.questions.length}
+                      className="bg-indigo-600 text-white px-6 py-2 rounded-lg hover:bg-indigo-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                    >
+                      Submit Quiz
+                    </button>
+                  ) : (
+                    <div className="text-center">
+                      <div className="text-lg font-semibold text-gray-800">
+                        Score: {getQuizScore()}/{currentTopic.quiz.questions.length}
+                      </div>
+                      <div className="text-sm text-gray-600">
+                        {getQuizScore() === currentTopic.quiz.questions.length 
+                          ? "Perfect! You've mastered this topic." 
+                          : getQuizScore() >= currentTopic.quiz.questions.length * 0.67
+                          ? "Great job! You understand the key concepts."
+                          : "Good effort! Consider reviewing the article again."}
+                      </div>
+                    </div>
+                  )}
+                </div>
+              </div>
+            )}
+          </div>
+
+          {/* Footer */}
+          <div className="bg-gray-50 px-6 py-4 border-t">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center space-x-4">
+                <div className="flex items-center space-x-1 text-sm text-gray-600">
+                  <BookOpen className="w-4 h-4" />
+                  <span>Touchstone #{currentIndex + 1} of {topics.length}</span>
+                </div>
+              </div>
+              <div className="flex flex-wrap gap-2">
+                {currentTopic.tags.map((tag) => (
+                  <span key={tag} className="bg-gray-200 px-2 py-1 rounded text-xs text-gray-700">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Generation Framework Info */}
+        <div className="mt-8 bg-white/80 rounded-lg p-4 text-sm text-gray-600">
+          <p className="text-center">
+            <strong>AI Generation Framework:</strong> Topics are automatically generated following balanced distribution across 
+            regions, time periods, cultures, and themes to ensure diverse, inclusive global perspectives.
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default CulturalTouchstones;
